@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crearaices</title>
+        <link rel="stylesheet" href="/static/core/css/colores.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <img src="/static/core/img/imagenlog.jpg" alt="" width="100" height="100" >
+                <p class="logo">CreaRaices</p>
+                <nav>
+                    <a href="/home">Inicio</a>
+                    <a href="/productos">Tienda</a>
+                    <a href="/home#crearaices">Nosotros</a>
+                    <a href="/home#lomasvendido">Descuentos</a>
+                    <a href="/home#caracteristicas">Informacion</a>
+                </nav>     
+                
+            </div>
+        </header>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        <div class="container">
+            <h2>Nuestros Productos</h2>
+            <p><a href="{% url 'nuevo_usuario' %}">Crear un nuevo producto</a></p>
+            <br>
+        </div>
+        <div class="container" style="text-align:center;">
+            <table  class="table table-striped table-hover table-responsive-sm" style="width:100%" border="1">
+                <tr><td>Categoria</td>
+                    <td>Nombre Producto</td>
+                    <td>Descripcion Producto</td>
+                    <td>Precio</td>
+                    <td>Stock</td>
+                    <td>Imagen</td>
+                    <th scope="col">Opciones</th>
+                </tr>
+                {% for ve in productos %}
+                <tr><td>{{ve.idCategoria | title}}</td>
+                    <td>{{ve.descripProducto}}</td>
+                    <td>{{ve.glosaProducto}}</td>
+                    <td>{{ve.precio}}</td>
+                    <td>{{ve.stock}}</td>
+                    <td><img src="/media/{{ve.imagen}}" width="100" height="100"></td>
+                    <td>
+                        <a href="{% url 'mod_usuario' ve.idProducto %}">Modificar/</a>
+                        <a href="{% url 'del_usuario' ve.idProducto %}">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %} 
+            </table>
+            
+        </div>
+    
+        <br>
+
+        
+        <section id="final">
+            <h2>Listo para ayudar al planeta ?</h2>
+            <form action="/productos">
+                <button>+ Compra YA</button>
+            </form>
+        </section>
+    
+        <footer>
+            <div class="container">
+                <p>&copy; Crearaices - (Fundacion Adopta un Peludo)</p>
+            </div>
+        </footer>
+        
+</body>
+</html>

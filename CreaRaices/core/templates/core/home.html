@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido A Crearaices</title>
+    <link rel="stylesheet" href="/static/core/css/colores.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            {% block body %}
+            <img src="/static/core/img/imagenlog.jpg" alt="" width="100" height="100" >
+            <p class="logo">CreaRaices</p>
+            <nav>
+                <a href="/home">Inicio</a>
+                <a href="/productos">Tienda</a>
+                <a href="/mantenedor">Productos add</a>
+                <a href="/home#crearaices">Nosotros</a>
+                <a href="/home#lomasvendido">Descuentos</a>
+                <a href="/home#caracteristicas">Informacion</a>
+            </nav>
+            <form >
+                {% if user.is_authenticated %}
+                <a href="#">@{{user.username | upper}}</a>     
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+                {% else %}
+                <a class="nav-link" href="{% url 'login' %}">Iniciar sesion</a>
+                {% endif %}
+            </form>
+            {% endblock body %}
+        </div>
+    </header>
+    <br>
+    <section id="ini">
+        <h1>CreaRaices <br> y vivamos en un mundo mejor para todos.</h1>
+        <form action="/productos">
+            <button>Compra YA!</button>
+        </form>
+    </section>
+
+    <section id="crearaices">
+        <div class="container">
+            <div class="img-container"></div>
+            <div class="texto">
+                <h2>Somos <span class="color-acento">Crearaices</span></h2>
+                <p>-Somos un gran equipo, especialistas en el hogar, trabajamos para facilitar y alegrar la vida de las personas.
+                    Somos innovadores en lo que hacemos y creemos que el diseño y la belleza son para todos.</p><p> <span class="color-acento">LO 
+                        QUE NOS HACE DIFERENTES QUEREMOS APORTAR A HACER UNA VIDA MÁS SIMPLE Y PRÁCTICA, Y QUE TU CASA SEA MÁS LINDA Y FUNCIONAL A 
+                        TRAVÉS DEL DISEÑO.</span>Invitamos a vivir con más alegría, a disfrutar nuestro hogar todos los días, con propuestas para 
+                        cada rincón de la casa, a través de un diseño inteligente que aporta valor desde la funcionalidad y la estética.Nos gusta 
+                        hacer las cosas bien, trabajamos arduamente en todo lo que hacemos y nos preocupamos siempre por mejorar el impacto que tienen 
+                        nuestras operaciones en el medio ambiente,Queremos acompañar e inspirar con creatividad y diseño en el día a día, co-creando un círculo de positivismo y alegría.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="lomasvendido">
+        <div class="container">
+            <h2>Lo mas vendido</h2>
+            <div class="programas">
+                <div class="carta">
+                    <h3> Maceteros </h3>
+                    <br>
+                    <p>Macetero de color gris para todo tipo de lugar, con decoracion mas minimalista.</p><p></p><span class="color-acento">Antes $6.000, SOLO POR HOY $4.000.</span></p>
+                    <br>
+                    <br>
+                    <form action="/productos">
+                        <button>+ Comprar</button>
+                    </form>
+                </div>
+                <div class="carta">
+                    <h3>Plantas</h3>
+                    <br>
+                    <p>Plantas de interior en DESCUENTO todo con un 10% de descuento.</p><p></p><span class="color-acento">DESCUENTO DE 10%.</span></p>
+                    <br>
+                    <br>
+                    <form action="/productos">
+                        <button>+ Comprar</button>
+                    </form>
+                </div>
+                <div class="carta">
+                    <h3>Herramientas</h3>
+                    <br>
+                    <p>Cortadora de pasto3000 de tamaño mediano, en color rojo y negro.</p><p></p><span class="color-acento">Antes $12.000, SOLO POR HOY $9.990.</span></p>
+                    <br>
+                    <br>
+                    <form action="/productos">
+                        <button>+ Comprar</button>
+                    </form>
+                </div>  
+            </div>
+        </div>
+    </section>
+
+    <section id="caracteristicas">
+        <div class="container">
+            <ul>
+                <li>💻100% online</li>
+                <li>✔️ Flexibilidad de horarios</li>
+                <li>📞 Contactanos</li>
+                <li>🐕‍🦺 Ayuda a una ONG</li>
+                <li>🚚 Entrega inmediata</li>
+                <li>✔️ Productos disponibles hasta agotar stock</li>
+                <li>💳 Todo medio de pago</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="final">
+        <h2>Listo para ayudar al planeta ?</h2>
+        <form action="/productos">
+            <button>+ Compra YA</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Crearaices - (Fundacion Adopta un Peludo)</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

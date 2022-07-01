@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from core.forms import productosForm
 from core.models import Producto
+from django.contrib.auth.decorators import login_required,permission_required
 #from .models import Usuario
 
 # Create your views here.
@@ -15,7 +16,8 @@ def login(request):
 
 def productos(request):
     return render(request,'core/productos.html')
-   
+
+@permission_required('core.view_producto')   
 def mantenedor_productos(request):
     productos = Producto.objects.all()
     datos = {
@@ -23,6 +25,7 @@ def mantenedor_productos(request):
     }
     return render(request,'core/mantenedor.html', datos)
 
+@permission_required('core.add_producto')
 def nuevo_producto(request):
 
     datos = {
@@ -39,6 +42,7 @@ def nuevo_producto(request):
 
     return render(request,'core/nuevo_usuario.html',datos)
 
+@permission_required('core.change_producto')
 def mod_producto(request,id):
 
     id_producto = Producto.objects.get(idProducto=id)
@@ -55,7 +59,7 @@ def mod_producto(request,id):
     
 
     return render(request,'core/mod_usuario.html',datos)    
-
+@permission_required('core.delete_producto')
 def del_producto(request,id):
 
     id_producto = Producto.objects.get(idProducto=id)

@@ -6,6 +6,7 @@ from django.urls import path
 from django.contrib.auth.views import logout_then_login
 from .views import home, productos, mantenedor_productos, nuevo_producto, mod_producto, del_producto, login
 
+
 urlpatterns = [
     path('', home, name="home"),
     path('productos', productos, name="productos"),
@@ -16,5 +17,4 @@ urlpatterns = [
     path('del_usuario/<id>', del_producto, name="del_usuario"),
     path('login', login, name="login"),
     path('logout', logout_then_login, name="logout"),
-    
 ]

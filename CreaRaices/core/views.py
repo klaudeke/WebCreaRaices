@@ -1,7 +1,9 @@
+from urllib import response
 from django.shortcuts import render, redirect
 from core.forms import productosForm
 from core.models import Producto
 from django.contrib.auth.decorators import login_required,permission_required
+
 #from .models import Usuario
 
 # Create your views here.
@@ -66,4 +68,5 @@ def del_producto(request,id):
   
     id_producto.delete()
 
-    return redirect(to="home")       
+    return redirect(to="home")
+

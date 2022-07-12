@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bienvenido A Crearaices</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/core/css/colores.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#traer").click(function(){
+                $.get("http://127.0.0.1:8000/api/api_productos",
+                function(data){
+                    $.each(data,function(i,item){
+                        $("#productos").append("<tr><td>"+item.idCategoria+
+                                                "</td><td>"+item.descripProducto+
+                                                "</td><td>"+item.glosaProducto+
+                                                "</td><td>"+item.precio+
+                                                "</td><td>"+item.stock+
+                                                "</td><td>"+item.imagen+"</td></tr>");
+                    });
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            {% block body %}
+            <img src="/static/core/img/imagenlog.jpg" alt="" width="100" height="100" >
+            <p class="logo">CreaRaices</p>
+            <nav>
+                <a href="/home">Inicio</a>
+                <a href="/productos">Tienda</a>
+                {% if user.is_superuser %}
+                <a href="/mantenedor">Productos add</a>
+                <a href="/api_vista">Productos API</a>
+                {% endif %}
+                <a href="/home#crearaices">Nosotros</a>
+                <a href="/home#lomasvendido">Descuentos</a>
+                <a href="/home#caracteristicas">Informacion</a>
+            </nav>
+            <form >
+                {% if user.is_authenticated %}
+                <a href="#">Hol@{{user.username | upper}}</a>     
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+                {% else %}
+                <a class="nav-link" href="{% url 'login' %}">Iniciar sesion</a>
+                {% endif %}
+            </form>
+            {% endblock body %}
+        </div>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
+    
+        <div class="container" style="text-align:center;">
+            <h3>API Productos</h3>
+            <br>
+            <div class="row">
+                <button type="button" class="btn btn-primary" id="traer">Traer Datos</button>
+            </div>
+            <br>
+            <div class="row">
+                <table class="table" id="productos">
+                    <thead>
+                        <tr>
+                        <th scope="col">Categoria</th>    
+                        <th scope="col">Nombre Producto</th>
+                        <th scope="col">Descripcion Producto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Imagen</th>
+                        </tr>
+                    </thead>    
+                </table>
+            </div>
+        </div>
+    
+
+    <section id="caracteristicas">
+        <div class="container">
+            <ul>
+                <li>💻 100% online</li>
+                <li>✔️ Flexibilidad de horarios</li>
+                <li>📞 <a href="https://www.instagram.com/crea.raices/">Escribenos en instagram</a></li>
+                <li>🐕‍🦺 Ayuda a una ONG</li>
+                <li>🚚 Despacho a domicilio</li>
+                <li>📦 Productos disponibles hasta agotar stock</li>
+                <li>💳 Todo medio de pago</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="final">
+        <h2>Listo para ayudar al planeta ?</h2>
+        <form action="/productos">
+            <button>+ Compra YA</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Crearaices - (Fundacion Adopta un Peludo)</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

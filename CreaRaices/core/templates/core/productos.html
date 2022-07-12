@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Productos</title>
-    
+    <title>Tienda</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -280,7 +278,7 @@
             <p class="logo">CreaRaices</p>
             <nav>
                 <a href="/home">Inicio</a>
-                <a href="/productos">Productos</a>
+                <a href="/productos">Tienda</a>
                 <a href="/home#crearaices">Nosotros</a>
                 <a href="/home#lomasvendido">Descuentos</a>
                 <a href="/home#caracteristicas">Informacion</a>
@@ -288,7 +286,7 @@
             </nav>
             <form id="logbotooon" action="/accounts/login">
                 {% if user.is_authenticated %}
-                <a href="#">@{{user.username | upper}}</a>     
+                <a href="#">Hol@{{user.username | upper}}</a>     
                 <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
                 {% else %}
                 <a class="nav-link" href="{% url 'login' %}">Iniciar sesion</a>
@@ -297,7 +295,6 @@
             {% endblock body %}
         </div>
     </header>
-    <br>
     <br>
     <br>
     <br>
@@ -329,8 +326,21 @@
             </div>
         </div>
     </section>
-    <br>
-    <br>
+    <hr>
+    <section id="caracteristicas">
+        <div class="container">
+            <ul>
+                <li>💻 100% online</li>
+                <li>✔️ Flexibilidad de horarios</li>
+                <li>📞 <a href="https://www.instagram.com/crea.raices/">Escribenos en instagram</a></li>
+                <li>🐕‍🦺 Ayuda a una ONG</li>
+                <li>🚚 Despacho a domicilio</li>
+                <li>📦 Productos disponibles hasta agotar stock</li>
+                <li>💳 Todo medio de pago</li>
+            </ul>
+        </div>
+    </section>
+    <hr>
     <footer>
         <div class="container">
             <p>&copy; Crearaices - (Adopta un peludo)</p>

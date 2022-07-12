@@ -8,12 +8,14 @@ from django.contrib.auth.decorators import login_required,permission_required
 
 # Create your views here.
 
+def api_vista(request):
+    return render(request,'core/API.html')
 
 def home(request):
     return render(request,'core/home.html')
 
 def login(request):
-    return render(request,'core/login.html')
+    return render(request,'registration/login.html')
 
 
 def productos(request):

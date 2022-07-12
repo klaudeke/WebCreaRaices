@@ -12,13 +12,12 @@ from rest_framework.authtoken.models import Token
 #from .models import Usuario
 
 
-@csrf_exempt
 @api_view(['POST'])
 def login(request):
     
     data = JSONParser().parse(request)
-    username = data['crearaices']
-    password = data['cr34R41c3s']
+    username = data['username']
+    password = data['password']
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
